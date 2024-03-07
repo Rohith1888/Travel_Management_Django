@@ -1,0 +1,21 @@
+{% include 'header.html' %}
+{% load static %}
+
+<div align="right">
+    <form method="GET" action="{% url 'weather_report' %}">
+        {% csrf_token %}
+        <input type="text" name="place" placeholder="Search by place...">
+        <button type="submit">Get Weather</button>
+    </form>
+</div>
+
+{% if weather_data %}
+    <div>
+        <h2>Weather Report for {{ place }}</h2>
+        <p>Temperature: {{ weather_data.temperature }}°C</p>
+        <p>Condition: {{ weather_data.condition }}</p>
+        <!-- Add more details as needed -->
+    </div>
+{% endif %}
+
+{% include 'footer.html' %}
